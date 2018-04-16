@@ -84,33 +84,35 @@ class _QuickLinksState extends State<QuickLinks>
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text(myTabs[_tabController.index].text),
-        backgroundColor: _bottomNavigationBarColor,
-        actions: <Widget>[
-          new IconButton(
-            icon: new Icon(Icons.power_settings_new),
-            onPressed: () {
-              _logout(context);
-            },
-          )
-        ],
-      ),
-      bottomNavigationBar: new Material(
-        color: _bottomNavigationBarColor,
-        child: new TabBar(
-            controller: _tabController,
-            tabs: myTabs,
-            indicatorColor: Colors.white),
-      ),
-      body: new TabBarView(controller: _tabController, children: <Widget>[
-        new Links(),
-        new Contacts(),
-        new Attendance(),
-        new SupportPage(),
-        new ContactsDemo(),
-      ]),
-    );
+    return new Directionality(
+        textDirection: TextDirection.rtl,
+        child: new Scaffold(
+          appBar: new AppBar(
+            title: new Text(myTabs[_tabController.index].text),
+            backgroundColor: _bottomNavigationBarColor,
+            actions: <Widget>[
+              new IconButton(
+                icon: new Icon(Icons.power_settings_new),
+                onPressed: () {
+                  _logout(context);
+                },
+              )
+            ],
+          ),
+          bottomNavigationBar: new Material(
+            color: _bottomNavigationBarColor,
+            child: new TabBar(
+                controller: _tabController,
+                tabs: myTabs,
+                indicatorColor: Colors.white),
+          ),
+          body: new TabBarView(controller: _tabController, children: <Widget>[
+            new Links(),
+            new Contacts(),
+            new Attendance(),
+            new SupportPage(),
+            new ContactsDemo(),
+          ]),
+        ));
   }
 }

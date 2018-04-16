@@ -9,6 +9,8 @@ void main() {
   runApp(new MyApp());
 }
 
+typedef void LocaleChangeCallback(Locale locale);
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
