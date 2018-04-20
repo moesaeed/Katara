@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
 
+import 'translation_strings.dart';
+
+typedef void LocaleChangeCallback(Locale locale);
+
 class LoginPage extends StatefulWidget {
+  final LocaleChangeCallback onLocaleChange;
+
+  LoginPage({Key key, this.onLocaleChange}) : super(key: key);
+
   @override
   _LoginPageState createState() => new _LoginPageState();
 }
@@ -50,7 +58,8 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                                 const SizedBox(height: 120.0),
                                 new TextFormField(
                                   decoration: new InputDecoration(
-                                    labelText: "Username",
+                                    labelText:
+                                        Translations.of(context).username,
                                     hintText: "user@katara.net",
                                     border: const OutlineInputBorder(
                                       borderRadius: BorderRadius.zero,
@@ -59,20 +68,25 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                                   keyboardType: TextInputType.emailAddress,
                                   validator: (val) => val.contains("@")
                                       ? null
-                                      : "Not valid username",
+                                      : Translations
+                                          .of(context)
+                                          .not_valid_username,
                                   onSaved: (val) => _username = val,
                                 ),
                                 const SizedBox(height: 16.0),
                                 new TextFormField(
                                   decoration: new InputDecoration(
-                                      labelText: "Password",
+                                      labelText:
+                                          Translations.of(context).password,
                                       border: const OutlineInputBorder(
                                         borderRadius: const BorderRadius.all(
                                             const Radius.circular(0.0)),
                                       )),
                                   obscureText: true,
                                   validator: (val) => val.length < 6
-                                      ? "Password is too short"
+                                      ? Translations
+                                          .of(context)
+                                          .password_is_too_short
                                       : null,
                                   onSaved: (val) => _password = val,
                                 ),
@@ -85,7 +99,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                                   height: 60.0,
                                   color: const Color.fromRGBO(119, 31, 17, 1.0),
                                   child: new Text(
-                                    "Log In",
+                                    Translations.of(context).login,
                                     style: new TextStyle(
                                       color: Colors.white,
                                       fontSize: 20.0,
@@ -96,18 +110,12 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                                 ),
                                 const SizedBox(height: 26.0),
                                 new MaterialButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      direction = direction == TextDirection.ltr
-                                          ? TextDirection.rtl
-                                          : TextDirection.ltr;
-                                    });
-                                  },
+                                  onPressed: _change_Language,
                                   minWidth: 1500.0,
                                   height: 60.0,
                                   color: Colors.white,
                                   child: new Text(
-                                    "Language",
+                                    Translations.of(context).language,
                                     style: new TextStyle(
                                       color: const Color.fromRGBO(
                                           119, 31, 17, 1.0),
@@ -135,5 +143,17 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
 
   void _performLogin() {
     print("Username: $_username && password: $_password");
+  }
+
+  _change_Language() {
+    setState(() {
+      if (direction == TextDirection.ltr) {
+        direction = TextDirection.rtl;
+        widget.onLocaleChange(const Locale("ar", ""));
+      } else {
+        direction = TextDirection.ltr;
+        widget.onLocaleChange(const Locale("en", ""));
+      }
+    });
   }
 }

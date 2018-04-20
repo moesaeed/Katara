@@ -1,17 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 
 import 'links_page.dart';
 import 'login_page.dart';
 import 'quick_links.dart';
+import 'translation.dart';
 
 void main() {
   runApp(new MyApp());
 }
 
-typedef void LocaleChangeCallback(Locale locale);
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => new _MyAppState();
+}
 
-class MyApp extends StatelessWidget {
+class _MyAppState extends State<MyApp> {
+  SpecifiedLocalizationDelegate _localeOverrideDelegate;
+
+  @override
+  void initState() {
+    super.initState();
+    _localeOverrideDelegate = new SpecifiedLocalizationDelegate(null);
+  }
+
+  onLocaleChange(Locale l) {
+    setState(() {
+      _localeOverrideDelegate = new SpecifiedLocalizationDelegate(l);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
@@ -19,6 +38,16 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.white,
         backgroundColor: Colors.white,
       ),
+      localizationsDelegates: [
+        _localeOverrideDelegate,
+        const TranslationsDelegate(),
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: [
+        const Locale('en', ''), // English
+        const Locale('ar', ''), // French
+      ],
       debugShowCheckedModeBanner: false,
       title: "Katara Intranet",
       routes: <String, WidgetBuilder>{
@@ -35,7 +64,7 @@ class MyApp extends StatelessWidget {
               withLocalStorage: true,
             )
       },
-      home: new LoginPage(),
+      home: new LoginPage(onLocaleChange: onLocaleChange),
     );
   }
 }
