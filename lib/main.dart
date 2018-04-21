@@ -31,6 +31,8 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
+  Key test = new Key("dsfsd");
+
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
@@ -51,7 +53,8 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       title: "Katara Intranet",
       routes: <String, WidgetBuilder>{
-        "/Login": (BuildContext context) => new LoginPage(),
+        "/Login": (BuildContext context) =>
+            new LoginPage(onLocaleChange: onLocaleChange),
         "/Links": (BuildContext context) => new QuickLinks(),
         "/Test": (BuildContext context) => new Links(),
         "/Test/widget": (_) => new WebviewScaffold(

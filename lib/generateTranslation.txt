@@ -7,6 +7,6 @@ flutter pub pub run intl_translation:generate_from_arb --output-dir=lib/I10n \
    --no-use-deferred-loading lib/*.dart lib/I10n/intl_*.arb
 
 
-
+    "@@locale" :   "en" ,
    "@@locale" :   "ar" ,
      "@@last_modified": "2018-04-20T13:32:20.953327",

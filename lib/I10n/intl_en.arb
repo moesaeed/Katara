@@ -1,6 +1,6 @@
 {
   "@@locale" :   "en" ,
-  "@@last_modified": "2018-04-20T13:52:51.432337",
+  "@@last_modified": "2018-04-21T10:52:19.296801",
   "username": "Username",
   "@username": {
     "type": "text",
@@ -28,6 +28,31 @@
   },
   "language": "عربي",
   "@language": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "links": "Links",
+  "@links": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contacts": "Contacts",
+  "@contacts": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "attendance": "Attendance",
+  "@attendance": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "support": "Support",
+  "@support": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "profile": "Profile",
+  "@profile": {
     "type": "text",
     "placeholders": {}
   }

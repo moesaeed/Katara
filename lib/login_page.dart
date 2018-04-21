@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'translation_strings.dart';
 
 typedef void LocaleChangeCallback(Locale locale);
+TextDirection direction = TextDirection.ltr;
 
 class LoginPage extends StatefulWidget {
   final LocaleChangeCallback onLocaleChange;
@@ -18,8 +19,6 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
 
   String _username;
   String _password;
-
-  TextDirection direction = TextDirection.ltr;
 
   @override
   Widget build(BuildContext context) {
@@ -137,6 +136,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
     if (form.validate()) {
       form.save();
       _performLogin();
+
       Navigator.pushReplacementNamed(context, "/Links");
     }
   }

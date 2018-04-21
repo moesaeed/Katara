@@ -19,11 +19,16 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
+    "attendance" : MessageLookupByLibrary.simpleMessage("Attendance"),
+    "contacts" : MessageLookupByLibrary.simpleMessage("Contacts"),
     "language" : MessageLookupByLibrary.simpleMessage("عربي"),
+    "links" : MessageLookupByLibrary.simpleMessage("Links"),
     "login" : MessageLookupByLibrary.simpleMessage("Login"),
     "not_valid_username" : MessageLookupByLibrary.simpleMessage("Not Valid Username"),
     "password" : MessageLookupByLibrary.simpleMessage("password"),
     "password_is_too_short" : MessageLookupByLibrary.simpleMessage("password is too short"),
+    "profile" : MessageLookupByLibrary.simpleMessage("Profile"),
+    "support" : MessageLookupByLibrary.simpleMessage("Support"),
     "username" : MessageLookupByLibrary.simpleMessage("Username")
   };
 }

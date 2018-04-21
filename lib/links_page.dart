@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 
 import 'attendance_page.dart';
 import 'contacts.dart';
+import 'login_page.dart';
 import 'profile.dart';
 import 'quick_links.dart';
 import 'support.dart';
+import 'translation_strings.dart';
 
 class QuickLinks extends StatefulWidget {
   @override
@@ -53,28 +55,32 @@ class _QuickLinksState extends State<QuickLinks>
     super.dispose();
   }
 
-  final List<Tab> myTabs = <Tab>[
-    new Tab(
-      icon: new Icon(Icons.http),
-      text: "Links",
-    ),
-    new Tab(
-      icon: new Icon(Icons.people),
-      text: "Contacts",
-    ),
-    new Tab(
-      icon: new Icon(Icons.query_builder),
-      text: "Attendance",
-    ),
-    new Tab(
-      icon: new Icon(Icons.help),
-      text: "Support",
-    ),
-    new Tab(
-      icon: new Icon(Icons.person),
-      text: "Profile",
-    )
-  ];
+  List<Tab> myTabs;
+
+  void _setTabs(BuildContext context) {
+    myTabs = <Tab>[
+      new Tab(
+        icon: new Icon(Icons.http),
+        text: Translations.of(context).links,
+      ),
+      new Tab(
+        icon: new Icon(Icons.people),
+        text: Translations.of(context).contacts,
+      ),
+      new Tab(
+        icon: new Icon(Icons.query_builder),
+        text: Translations.of(context).attendance,
+      ),
+      new Tab(
+        icon: new Icon(Icons.help),
+        text: Translations.of(context).support,
+      ),
+      new Tab(
+        icon: new Icon(Icons.person),
+        text: Translations.of(context).profile,
+      )
+    ];
+  }
 
   _logout(BuildContext context) {
     Navigator
@@ -84,8 +90,9 @@ class _QuickLinksState extends State<QuickLinks>
 
   @override
   Widget build(BuildContext context) {
+    _setTabs(context);
     return new Directionality(
-        textDirection: TextDirection.rtl,
+        textDirection: direction,
         child: new Scaffold(
           appBar: new AppBar(
             title: new Text(myTabs[_tabController.index].text),

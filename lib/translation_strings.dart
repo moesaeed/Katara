@@ -62,4 +62,39 @@ class Translations {
       name: 'language',
     );
   }
+
+  String get links {
+    return Intl.message(
+      'Links',
+      name: 'links',
+    );
+  }
+
+  String get contacts {
+    return Intl.message(
+      'Contacts',
+      name: 'contacts',
+    );
+  }
+
+  String get attendance {
+    return Intl.message(
+      'Attendance',
+      name: 'attendance',
+    );
+  }
+
+  String get support {
+    return Intl.message(
+      'Support',
+      name: 'support',
+    );
+  }
+
+  String get profile {
+    return Intl.message(
+      'Profile',
+      name: 'profile',
+    );
+  }
 }
