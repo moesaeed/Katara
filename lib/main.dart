@@ -22,7 +22,9 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    _localeOverrideDelegate = new SpecifiedLocalizationDelegate(null);
+    direction = TextDirection.rtl;
+    _localeOverrideDelegate =
+        new SpecifiedLocalizationDelegate(const Locale("ar", ""));
   }
 
   onLocaleChange(Locale l) {
@@ -30,8 +32,6 @@ class _MyAppState extends State<MyApp> {
       _localeOverrideDelegate = new SpecifiedLocalizationDelegate(l);
     });
   }
-
-  Key test = new Key("dsfsd");
 
   @override
   Widget build(BuildContext context) {
@@ -47,8 +47,8 @@ class _MyAppState extends State<MyApp> {
         GlobalWidgetsLocalizations.delegate,
       ],
       supportedLocales: [
+        const Locale('ar', ''), // Arabic
         const Locale('en', ''), // English
-        const Locale('ar', ''), // French
       ],
       debugShowCheckedModeBanner: false,
       title: "Katara Intranet",
@@ -61,7 +61,8 @@ class _MyAppState extends State<MyApp> {
               url: selectedUrl,
               appBar: new AppBar(
                 title: new Text("Links"),
-                backgroundColor: new Color.fromRGBO(244, 71, 8, 1.0),
+                backgroundColor: Color.fromRGBO(
+                    119, 31, 17, 1.0), //new Color.fromRGBO(244, 71, 8, 1.0),
               ),
               withZoom: true,
               withLocalStorage: true,
